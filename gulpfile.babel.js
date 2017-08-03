@@ -39,6 +39,7 @@ const webpackConfig = {
 
 
 // 1. commit changes as they happen.
+// Obviously you should never to this on master...
 // 
 // - - - - - - - - - - - - - - 
 function commit(cb){
@@ -68,6 +69,8 @@ function javascript() {
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
 
+
+gulp.task('init', commit)
 gulp.task('javascript', javascript)
 
 gulp.task('default',
