@@ -29,7 +29,7 @@ function javascript(cb){
 gulp.task('javascript', javascript)
 
 gulp.task('default',
-  gulp.series('javascript',commit, watch)
+  gulp.series(commit, watch)
 );
 
 console.log("change");
