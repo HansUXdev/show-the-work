@@ -67,19 +67,31 @@
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+console.log("test 2");
+
+/***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-// import other file
-// import test from './test-2.js'
+var _test = __webpack_require__(0);
+
+var _test2 = _interopRequireDefault(_test);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 console.log("test 1");
 
 // module.exports = function(  ){
+// import other file
 
 /***/ }),
 /* 2 */,
