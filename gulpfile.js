@@ -31,3 +31,5 @@ gulp.task('javascript', javascript)
 gulp.task('default',
   gulp.series('javascript',commit, watch)
 );
+
+console.log("change");
