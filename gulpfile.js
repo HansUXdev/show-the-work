@@ -13,14 +13,14 @@ function commit(cb){
         console.log(stderr);
         cb(err);
     }); 
-    gulp.watch("gulpfile.js").on('all', commit);
+    // gulp.watch("gulpfile.js").on('all', commit);
 }
 
-// function watch() {
-//   gulp.watch("gulpfile.js").on('all', commit);
-//   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
-//   // gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript));
-// }
+function watch() {
+	gulp.watch("gulpfile.js").on('all', commit);
+  // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
+  // gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript));
+}
 
 // function javascript(cb){
 //     cb(err);
