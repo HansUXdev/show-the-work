@@ -21,6 +21,20 @@ const PATHS = {
 	dist: "dist/",
 };
 
+// because why yet another config file...
+const webpackConfig = {
+  rules: [
+    {
+      test: /.js$/,
+      use: [
+        {
+          loader: 'babel-loader'
+        }
+      ]
+    }
+  ]
+}
+
 
 
 
@@ -39,26 +53,12 @@ function commit(cb){
 }
 
 function watch() {
-	console.log("test");
+	console.log("I'm watching you...");
   // gulp.watch("./gulpfile.js").on('all', commit);
   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
-  gulp.watch('PATHS.entries').on('all', gulp.series(javascript));
+  gulp.watch(PATHS.entries).on('all', gulp.series(javascript));
 }
 
-
-
-let webpackConfig = {
-  rules: [
-    {
-      test: /.js$/,
-      use: [
-        {
-          loader: 'babel-loader'
-        }
-      ]
-    }
-  ]
-}
 
 function javascript() {
   return gulp.src(PATHS.entries)
@@ -71,7 +71,8 @@ function javascript() {
 gulp.task('javascript', javascript)
 
 gulp.task('default',
-  gulp.series( 
+  gulp.series(
+  	javascript,
   	commit,
   	watch
   )
