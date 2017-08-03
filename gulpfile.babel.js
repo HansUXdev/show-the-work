@@ -39,7 +39,9 @@ const webpackConfig = {
 
 
 // 1. commit changes as they happen.
-// 
+// Obviously you should never to this on master...
+// So make sure you are in a different branch..
+// And obviously you shouldn't do this in a real job its just for fun.
 // - - - - - - - - - - - - - - 
 function commit(cb){
 	var command = `git status && git add -A && git commit -m "changed these files" && git push`
@@ -49,25 +51,38 @@ function commit(cb){
         console.log(stderr);
         cb(err);
     }); 
-    gulp.watch("gulpfile.js").on('all', commit);
 }
+
+
 
 function watch() {
   console.log("I'm watching you...");
-  gulp.watch("./gulpfile.babel.js").on('all', commit);
+
+  // Don't choke when you gulp...
+  // gulp.watch("./gulpfile.babel.js").on('all', commit);
+
   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch(PATHS.entries).on('all', gulp.series(javascript));
 }
 
-
+// 2. compile your javascript
+// 
+// - - - - - - - - - - - - - - 
 function javascript() {
   return gulp.src(PATHS.entries)
     .pipe(named())
     .pipe($.sourcemaps.init())
-    .pipe(webpackStream({module: webpackConfig}, webpack2))
+    .pipe(webpackStream(
+      {
+        module: webpackConfig
+      }, 
+      webpack2)
+    )
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
 
+
+gulp.task('init', commit)
 gulp.task('javascript', javascript)
 
 gulp.task('default',
