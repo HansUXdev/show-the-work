@@ -50,8 +50,9 @@ function commit(cb){
         console.log(stderr);
         cb(err);
     }); 
-    gulp.watch("gulpfile.js").on('all', commit);
 }
+
+
 
 function watch() {
   console.log("I'm watching you...");
