@@ -64,12 +64,19 @@ function watch() {
   gulp.watch(PATHS.entries).on('all', gulp.series(javascript));
 }
 
-
+// 2. compile your javascript
+// 
+// - - - - - - - - - - - - - - 
 function javascript() {
   return gulp.src(PATHS.entries)
     .pipe(named())
     .pipe($.sourcemaps.init())
-    .pipe(webpackStream({module: webpackConfig}, webpack2))
+    .pipe(webpackStream(
+      {
+        module: webpackConfig
+      }, 
+      webpack2)
+    )
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
 
