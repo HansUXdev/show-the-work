@@ -9,8 +9,8 @@ function commit(cb){
 	var command = `git status && git add -A && git commit -m "changed these files" && git push`
     // Run the command
     exec(command, function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+        // console.log(stdout);
+        // console.log(stderr);
         cb(err);
     }); 
     gulp.watch("gulpfile.js").on('all', commit);
@@ -23,7 +23,11 @@ function watch() {
 }
 
 function javascript(cb){
-    cb(err);
+    cb();
 }
 
-gulp.task('default', commit)
+gulp.task('javascript', javascript)
+
+gulp.task('default',
+  gulp.series('javascript',commit, watch)
+);
