@@ -53,7 +53,7 @@ function commit(cb){
 }
 
 function watch() {
-	// console.log("I'm watching you...");
+  console.log("I'm watching you...");
   gulp.watch("./gulpfile.babel.js").on('all', commit);
   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch(PATHS.entries).on('all', gulp.series(javascript));
