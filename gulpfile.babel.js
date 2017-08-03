@@ -3,13 +3,27 @@ import plugins       from 'gulp-load-plugins';
 import rimraf        from 'rimraf';
 import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
+import named         from 'vinyl-named';
 import fs            from 'fs';
 
+// Load all Gulp plugins into one variable
+const $ = plugins();
 
 // var gulp     	= require('gulp');
 // var fs 			= require('fs');
 var exec 		= require('child_process').exec;
  
+const PATHS = {
+	entries: [
+		"./js/test.js",
+		"./js/test-2.js"
+	],
+	dist: "dist/",
+};
+
+
+
+
 // 1. commit changes as they happen.
 // 
 // - - - - - - - - - - - - - - 
@@ -28,7 +42,7 @@ function watch() {
 	console.log("test");
   // gulp.watch("./gulpfile.js").on('all', commit);
   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
-  // gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript));
+  gulp.watch('PATHS.entries').on('all', gulp.series(javascript));
 }
 
 
@@ -46,15 +60,15 @@ let webpackConfig = {
   ]
 }
 
-// function javascript() {
-//   return gulp.src(PATHS.entries)
-//     .pipe(named())
-//     .pipe($.sourcemaps.init())
-//     .pipe(webpackStream({module: webpackConfig}, webpack2))
-//     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
-// }
+function javascript() {
+  return gulp.src(PATHS.entries)
+    .pipe(named())
+    .pipe($.sourcemaps.init())
+    .pipe(webpackStream({module: webpackConfig}, webpack2))
+    .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+}
 
-// gulp.task('javascript', javascript)
+gulp.task('javascript', javascript)
 
 gulp.task('default',
   gulp.series( 
