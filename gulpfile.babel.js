@@ -44,10 +44,10 @@ const webpackConfig = {
 function commit(cb){
 	var command = `git status && git add -A && git commit -m "changed these files" && git push`
     // Run the command
-    exec(command, function ( stdout, stderr) {
+    exec(command, function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
-        cb();
+        cb(err);
     }); 
     gulp.watch("gulpfile.js").on('all', commit);
 }
