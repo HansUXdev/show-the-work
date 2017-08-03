@@ -2,7 +2,7 @@ var gulp     	= require('gulp');
 var fs 			= require('fs');
 var exec 		= require('child_process').exec;
  
-// 1. Clone repos
+// 1. commit changes as they happen.
 // 
 // - - - - - - - - - - - - - - 
 function commit(cb){
@@ -13,6 +13,17 @@ function commit(cb){
         console.log(stderr);
         cb(err);
     }); 
+    gulp.watch("gulpfile.js").on('all', commit);
 }
+
+// function watch() {
+//   gulp.watch("gulpfile.js").on('all', commit);
+//   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
+//   // gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript));
+// }
+
+// function javascript(cb){
+//     cb(err);
+// }
 
 gulp.task('default', commit)
