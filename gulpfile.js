@@ -17,13 +17,13 @@ function commit(cb){
 }
 
 function watch() {
-  gulp.watch("gulpfile.js").on('all', commit);
+  gulp.watch("./gulpfile.js").on('all', commit);
   // gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
   // gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript));
 }
 
-// function javascript(cb){
-//     cb(err);
-// }
+function javascript(cb){
+    cb(err);
+}
 
 gulp.task('default', commit)
