@@ -40,7 +40,7 @@ const webpackConfig = {
 
 // 1. commit changes as they happen.
 // Obviously you should never to this on master...
-// 
+// So make sure you are in a different branch
 // - - - - - - - - - - - - - - 
 function commit(cb){
 	var command = `git status && git add -A && git commit -m "changed these files" && git push`
